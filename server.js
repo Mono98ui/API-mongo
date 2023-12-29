@@ -38,6 +38,6 @@ mongoose.connect(MONGO_DB).then(()=>{
   app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
-}).catch(()=>{
+}).catch((error)=>{
   console.log(error)
 })
