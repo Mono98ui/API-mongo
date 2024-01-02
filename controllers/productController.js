@@ -32,7 +32,7 @@ const getProduct = asyncHandler(async(req,res)=>{
   }
 })
 
-//creat a product
+//create a product
 const createProduct = asyncHandler(async(req, res) =>{
   try{
     const product = await Product.create(req.body)
