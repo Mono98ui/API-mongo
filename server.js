@@ -32,12 +32,14 @@ app.use(errorMiddleware)
 //routes
 app.use('/api/products', productRoute)
 
-
-mongoose.connect(MONGO_DB).then(()=>{
-  console.log("Connectedto DB sucessfully")
-  app.listen(PORT, () => {
+// Start the server
+const server = app.listen(PORT, async () => {
   console.log(`Example app listening on port ${PORT}`)
-})
-}).catch((error)=>{
+  await mongoose.connect(MONGO_DB).then(()=>{
+  console.log("Connectedto DB sucessfully")
+  }).catch((error)=>{
   console.log(error)
-})
+  })
+});
+
+module.exports = server
