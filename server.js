@@ -6,6 +6,9 @@ var cors = require('cors')
 const productRoute = require('./routes/productRoute')
 const errorMiddleware = require('./middleware/errorMiddleware')
 
+// Import Routes
+const authRoute = require('./routes/authRoute');
+
 const MONGO_DB = process.env.MONGO_URL
 const PORT = process.env.PORT
 //const FRONT_END = process.env.FRONT_END
@@ -31,6 +34,7 @@ app.use(errorMiddleware)
 
 //routes
 app.use('/api/products', productRoute)
+app.use('/api/user', authRoute);
 
 // Start the server
 const server = app.listen(PORT, async () => {
