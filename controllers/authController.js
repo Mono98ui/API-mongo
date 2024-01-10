@@ -27,7 +27,7 @@ const register = asyncHandler(async (req, res)=>{
   // Save the user
   try {
     const savedUser = await user.save()
-    res.send({ user: user._id })
+    res.status(200)
   } catch (err) {
     res.status(400).send(err)
   }
