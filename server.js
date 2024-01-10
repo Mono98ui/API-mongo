@@ -5,8 +5,6 @@ const app = express()
 var cors = require('cors')
 const productRoute = require('./routes/productRoute')
 const errorMiddleware = require('./middleware/errorMiddleware')
-
-// Import Routes
 const authRoute = require('./routes/authRoute');
 
 const MONGO_DB = process.env.MONGO_URL

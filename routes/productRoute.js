@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const Product = require('../models/productModel')
 const verify = require('./verifyToken')
 const{getProducts, getProduct, createProduct, updateProduct, deleteProduct} = require('../controllers/productController')
 
