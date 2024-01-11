@@ -27,7 +27,7 @@ const register = asyncHandler(async (req, res)=>{
   // Save the user
   try {
     const savedUser = await user.save()
-    res.status(200)
+    res.status(200).send('User created')
   } catch (err) {
     res.status(400).send(err)
   }
@@ -55,4 +55,27 @@ const login = asyncHandler(async (req, res)=>{
   
 })
 
-module.exports = {register, login}
+
+const deleteUser = asyncHandler(async (req, res)=>{
+
+  // Check if email exists
+  const user = await User.findOne({ email: req.body.email })
+  if (!user) return res.status(400).send('Email not valid')
+
+  // Check if password is valid
+  const validPassword = await bcrypt.compare(req.body.password, user.password)
+  if (!validPassword)
+  return res.status(400).send('Password not valid')
+
+  const token = req.header('auth-token')
+  const userID = jwt.verify(token, process.env.TOKEN_SECRET)
+
+  // Delete user
+  const userDel = await User.findOneAndDelete({ email: req.body.email, _id: userID })
+  if (!userDel){return res.status(400).send('Request not valid')}
+  else{return res.status(200).send('Your account is deleted')}
+  
+  
+})
+
+module.exports = {register, login, deleteUser}
