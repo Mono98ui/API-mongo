@@ -14,7 +14,7 @@ describe('Test API Endpoints', () => {
   });
 
 
-  it('should created a user', async()=>{
+  it('should create a user', async()=>{
     const res = await request(app)
       .post('/api/user/register')
       .send({
